@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package learn.proto.fullstack;
+
+option java_multiple_files = true;
+
+message Employee {
+    int64 id =1 ;
+    string first_name = 2;
+    string last_name = 3;
+    string email_id = 4;
+}
+message  Empty{
+//     No Request Parameter
+}
+
+message  GetAllEmpRes{
+   repeated Employee employees = 1;
+}
+
+message CreateEmployeeRequest {
+    Employee employee = 1;
+}
+
+message EmployeeResponse {
+    string status = 1;
+}
+
+message UpdateEmployeeRequest {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email_id = 4;
+}
+
+message UpdateEmployeeResponse {
+    Employee employee = 1;
+}
+
+message EmployeeRequest {
+    int64 id = 1;
+}
+
+
+service EmployeeService {
+
+    // unary -Asynchronus
+    /** client will send one request and
+     The server processes the request, fetches all employees, and sends single single
+     GetAllEmpRes **/
+    rpc GetAllEmployees(Empty) returns(GetAllEmpRes){}
+    // unary -Asynchronus
+    /** client will send one request and
+     The server processes the request, and sends single single
+     Response **/
+    rpc CreateEmployee(CreateEmployeeRequest) returns(EmployeeResponse){}
+
+    rpc UpdateEmployee(UpdateEmployeeRequest) returns (UpdateEmployeeResponse){}
+
+    rpc DeleteEmployee(EmployeeRequest) returns (EmployeeResponse){}
+
+    rpc getEmployee(EmployeeRequest) returns(Employee){}
+
+}
