@@ -14,7 +14,7 @@ public class MyApplicationModule extends AbstractModule{
         // Configure and create your DatabaseConnector instance here
         String jdbcUrl = "jdbc:mysql://localhost:3306/GRPCFullstack";
         String username = "root";
-        String password = "@@March92001";
+        String password = (password);
 
         return new DatabaseConnector(jdbcUrl, username, password);
     }
